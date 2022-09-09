@@ -39,9 +39,10 @@ input {
 li {
   background-color: #e6e2d3;
   width: 90%;
+  height: 30px;
   border-radius: 5px;
   height: 28px;
-  margin: 2% 2% 2% 0;
+  margin: 2% 0 2% 0;
   padding: 3px 3px 3px 3px;
 }
 
@@ -66,19 +67,19 @@ li > input {
 }
 
 .arrow {
-  max-width: 6%;
+  max-width: 4%;
   background-color: #4caf50;
   border-radius: 5px;
   fill: #f0f0f0;
 }
 .edit {
-  max-width: 6%;
+  max-width: 4%;
   background-color: #008cba;
   border-radius: 5px;
   fill: #f0f0f0;
 }
 .delete {
-  max-width: 6%;
+  max-width: 4%;
   background-color: #c94c4c;
   border-radius: 5px;
   fill: #f0f0f0;
