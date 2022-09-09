@@ -1,42 +1,71 @@
-// Import stylesheets
-import './style.css';
+import './styles.css';
 // get all data
-function todo() {
-  fetch('http://localhost:3000/todos')
-    .then(function (data) {
-      return data.json();
+function todo(){
+    fetch('http://localhost:3000/todos')
+    .then(function(data){
+        return data.json()
     })
-    .then(function (data) {
-      //Here can show all the data
-      console.log(data);
-    });
+    .then(function(data) {
+        //Here can show all the data
+        console.log(data)
+    })
 }
 todo();
 
 //post when click submit
-function post() {
-  var li = document.createElement('li');
-  var element = document.getElementById('form');
-  element.addEventListener('click', myFunction);
-  var inputValue = document.getElementById('sub').value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  document.getElementById('myUL').appendChild(li);
-  function myFunction() {
-    fetch('http://localhost:3000/todos', {
-      method: 'POST',
-      body: JSON.stringify({
-        title: inputValue,
-        completed: false,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  }
-
-  document.getElementById('myInput').value = '';
+function post(){
+    var li = document.createElement('li');
+    var element = document.getElementById('form');
+    element.addEventListener("click", myFunction);
+    var inputValue = document.getElementById("sub").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    document.getElementById("myUL").appendChild(li);
+    function myFunction() {
+        fetch('http://localhost:3000/todos', {
+            method:'POST', 
+            body:JSON.stringify({
+                title: inputValue, 
+                completed: false
+            }), 
+            headers: {
+				"Content-type": "application/json; charset=UTF-8",
+			},
+        })
+        .then(response=>response.json())
+        .then(data=>console.log(data))
+    }
+    
+    document.getElementById("myInput").value = "";
 }
 post();
+
+//delete
+const deleteTodo = (id) =>
+fetch(['http://localhost:3000/todos', id].join("/"), {
+    method: "DELETE",
+});
+
+//update
+function update(){
+    var element = document.getElementByClass('query');
+    element.addEventListener("click", myFunction);
+    var inputValue = document.getElementById("query").value;
+    document.getElementById("query").innerHTML = inputValue;
+    function myFunction() {
+        fetch('http://localhost:3000/todos', {
+            method:'POST', 
+            body:JSON.stringify({
+                title: inputValue, 
+                completed: false
+            }), 
+            headers: {
+				"Content-type": "application/json; charset=UTF-8",
+			},
+        })
+        .then(response=>response.json())
+        .then(data=>console.log(data))
+    }
+}
+update();
+
